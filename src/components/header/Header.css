@@ -1,0 +1,35 @@
+.header {
+  max-height: 100px;
+  padding: 5px 20px 5px 20px;
+  margin: 0 40px 0 40px;
+  background: var(--header-footer-bg-color);
+}
+
+@media (max-width: 400px) {
+  .header {
+    margin: 0;
+  }
+}
+
+.header--sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+}
+
+.header--rounded {
+  border-radius: 10px;
+  border-bottom-right-radius: 45px;
+  border-bottom-left-radius: 45px;
+}
+.header__main-header {
+  justify-content: space-between;
+  position: relative;
+}
+
+.logo-img {
+  width: 65px;
+  height: 25px;
+}

@@ -1,0 +1,18 @@
+.footer {
+  padding: 20px;
+  margin: 0 40px 0 40px;
+  background: var(--header-footer-bg-color);
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.footer__text {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.footer--rounded {
+  border-radius: var(--s-spacing);
+  border-top-right-radius: 45px;
+  border-top-left-radius: 45px;
+}
