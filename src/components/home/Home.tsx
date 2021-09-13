@@ -3,11 +3,13 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Carousel from "../carousel/Carousel";
 import Repository from "../../api/Repository";
-import * as React from "react";
 import { Player } from "../../types/Player";
+import PlayerList from "../players/PlayerList";
+import { useState } from "react";
 
 const Home = () => {
-  const [players, setPlayers] = React.useState<Player[]>([]);
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [activePlayer, setActivePlayer] = useState<Player>();
 
   const getPlayers = async () => {
     const result = await Repository.getPlayers();
@@ -16,13 +18,14 @@ const Home = () => {
 
   if (!players.length) getPlayers();
 
-  // console.log(players);
   return (
     <>
       <Header />
-      <div className="content centered-grid">
-        <Carousel players={players} />
-      </div>
+      <Carousel activePlayer={activePlayer} />
+      <PlayerList
+        onActivePlayerChange={(player) => setActivePlayer(player)}
+        players={players}
+      />
       <Footer />
     </>
   );

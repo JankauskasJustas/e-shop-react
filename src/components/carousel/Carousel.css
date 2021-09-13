@@ -57,11 +57,11 @@
   font-size: 15px;
 }
 
-.carousel .carousel__actions button#carousel__button--prev {
+.carousel .carousel__actions button.carousel__button--prev {
   margin-left: var(--l-spacing);
 }
 
-.carousel .carousel__actions button#carousel__button--next {
+.carousel .carousel__actions button.carousel__button--next {
   margin-right: var(--l-spacing);
 }
 

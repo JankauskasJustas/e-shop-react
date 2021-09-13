@@ -21,11 +21,14 @@
   --l-spacing: 20px;
 }
 
-html {
+html,
+body {
   height: 100%;
+  margin: 0;
+  background: var(--main-bg-color);
 }
 
-body {
+div#root {
   height: 100%;
   margin: 0;
   background: var(--main-bg-color);
@@ -66,4 +69,11 @@ body {
 .content {
   padding: 130px 40px 40px;
   flex: 1 0 auto;
+}
+
+.centered-grid {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 15px;
 }
