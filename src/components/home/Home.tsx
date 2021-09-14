@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const Home = () => {
   const [players, setPlayers] = useState<Player[]>([]);
-  const [activePlayer, setActivePlayer] = useState<Player>();
+  const [activePlayer, setActivePlayer] = useState<Player>(players[0]);
 
   const getPlayers = async () => {
     const result = await Repository.getPlayers();
@@ -26,6 +26,7 @@ const Home = () => {
         refetchPlayers={() => getPlayers()}
         onActivePlayerChange={(player) => setActivePlayer(player)}
         players={players}
+        activePlayer={activePlayer}
       />
       <Footer />
     </>

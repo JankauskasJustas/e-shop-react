@@ -7,6 +7,7 @@ import PlayerForm from "./PlayerForm";
 
 interface PlayerItemProps {
   player: Player;
+  isActive: boolean;
   onItemClick: (player: Player) => void;
   onDeleteClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -44,7 +45,9 @@ const PlayerItem = (props: PlayerItemProps) => {
       <div
         onClick={() => props.onItemClick(props.player)}
         tabIndex={0}
-        className="players-container__item"
+        className={`players-container__item ${
+          props.isActive ? "players-container__item--active" : ""
+        }`}
       >
         <div className="item__actions">
           <button
