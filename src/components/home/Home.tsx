@@ -23,6 +23,7 @@ const Home = () => {
       <Header />
       <Carousel activePlayer={activePlayer} />
       <PlayerList
+        refetchPlayers={() => getPlayers()}
         onActivePlayerChange={(player) => setActivePlayer(player)}
         players={players}
       />

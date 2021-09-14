@@ -1,10 +1,10 @@
 export interface Player {
     name: string;
     surname: string;
-    fullName: string;
+    fullName?: string;
     img: string;
     jerseys: Jersey[];
-    id: number;
+    id?: number;
 }
 
 export interface Jersey {

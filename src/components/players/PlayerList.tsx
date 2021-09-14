@@ -1,3 +1,4 @@
+import Repository from "../../api/Repository";
 import { Player } from "../../types/Player";
 import NewPlayerItem from "./player-item/NewPlayerItem";
 import PlayerItem from "./player-item/PlayerItem";
@@ -6,6 +7,7 @@ import "./PlayerList.css";
 interface PlayerListProps {
   players: Player[];
   onActivePlayerChange: (player: Player) => void;
+  refetchPlayers: () => void;
 }
 
 const PlayerList = (props: PlayerListProps) => {
@@ -14,19 +16,17 @@ const PlayerList = (props: PlayerListProps) => {
       {props.players.map((player) => (
         <PlayerItem
           onItemClick={(player) => props.onActivePlayerChange(player)}
-          onEditClick={(e, player) => {
+          onDeleteClick={async (e, player) => {
             e.stopPropagation();
-            console.log("EDIT: ", e);
+            await Repository.deletePlayer(player.id as number);
+            props.refetchPlayers();
           }}
-          onDeleteClick={(e, player) => {
-            e.stopPropagation();
-            console.log("Delete: ", e);
-          }}
+          onDataChanged={() => props.refetchPlayers()}
           key={player.id}
           player={player}
         />
       ))}
-      <NewPlayerItem onNewItemClick={() => console.log("Add new Item!")} />
+      <NewPlayerItem onDataChanged={() => props.refetchPlayers()} />
     </div>
   );
 };
