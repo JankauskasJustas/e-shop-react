@@ -8,33 +8,6 @@
   border-radius: var(--item-carousel-border-radius);
 }
 
-.carousel .carousel__item,
-.carousel .carousel__item--hidden {
-  display: none;
-}
-
-.carousel .carousel__item img {
-  max-width: 400px;
-  width: 100%;
-  height: 400px;
-}
-
-.carousel .carousel__item h3 {
-  position: absolute;
-  display: block;
-  top: 0px;
-  right: 50%;
-  transform: translateX(50%);
-  margin-top: 0;
-  width: 100%;
-  text-align: center;
-}
-
-.carousel .carousel__item--visible {
-  display: block;
-  animation: fadeVisibility 0.5s;
-}
-
 .carousel .carousel__actions {
   display: flex;
   justify-content: space-between;

@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Player } from "../../types/Player";
+import CarouselSlide from "./carousel-slide/CarouselSlide";
 import "./Carousel.css";
 
 interface CarouselDTO {
@@ -6,23 +8,48 @@ interface CarouselDTO {
 }
 
 const Carousel = (props: CarouselDTO) => {
+  const [activeSlidePosition, setActiveSlidePosition] = useState(0);
+  let totalSlides = props.activePlayer?.jerseys.length || 0;
+
+  const onPreviousSlideClick = () => {
+    if (activeSlidePosition === 0) {
+      setActiveSlidePosition(totalSlides - 1);
+    } else {
+      setActiveSlidePosition(activeSlidePosition - 1);
+    }
+  };
+
+  const onNextSlideClick = () => {
+    if (activeSlidePosition === totalSlides - 1) {
+      setActiveSlidePosition(0);
+    } else {
+      setActiveSlidePosition(activeSlidePosition + 1);
+    }
+  };
+
   return (
     <div className="content centered-grid">
       <div className="carousel">
         <div className="carousel__actions">
-          <button className="carousel__button--prev">&#10094;</button>
-          <button className="carousel__button--next">&#10095;</button>
+          <button
+            onClick={() => onPreviousSlideClick()}
+            className="carousel__button--prev"
+          >
+            &#10094;
+          </button>
+          <button
+            onClick={() => onNextSlideClick()}
+            className="carousel__button--next"
+          >
+            &#10095;
+          </button>
         </div>
         {props.activePlayer?.jerseys.map((jersey, index) => (
-          <div
+          <CarouselSlide
+            isActive={index === activeSlidePosition}
             key={index}
-            className={`carousel__item ${
-              index === 0 ? "carousel__item--visible" : ""
-            }`}
-          >
-            <img src={`data:;base64,${jersey.img}`} alt={jersey.title} />
-            <h3>{jersey.title}</h3>
-          </div>
+            jersey={jersey}
+          />
         ))}
       </div>
     </div>
