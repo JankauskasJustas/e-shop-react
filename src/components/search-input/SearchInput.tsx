@@ -7,13 +7,13 @@ interface SearchInputProps {
   label: string;
 }
 
-const SearchInput = (props: SearchInputProps) => {
+const SearchInput = ({ onSearchChange, label }: SearchInputProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearchTerm = useDebounce(searchTerm, 1000);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
-    props.onSearchChange(debouncedSearchTerm);
-  }, [debouncedSearchTerm]);
+    onSearchChange(debouncedSearchTerm);
+  }, [debouncedSearchTerm, onSearchChange]);
 
   const searchChanges = (searchString: string): void => {
     setSearchTerm(searchString);
@@ -21,7 +21,7 @@ const SearchInput = (props: SearchInputProps) => {
 
   return (
     <label>
-      <span>{props.label}</span>
+      <span>{label}</span>
       <input
         type="text"
         value={searchTerm}

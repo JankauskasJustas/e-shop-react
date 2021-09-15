@@ -18,7 +18,7 @@ const PlayerList = (props: PlayerListProps) => {
     <div className="text-centered">
       <SearchInput
         label="Enter player name to filter"
-        onSearchChange={(searchTerm: string) => props.filterPlayers(searchTerm)}
+        onSearchChange={props.filterPlayers}
       />
       <div className="players-container">
         {props.players.map((player) => (
