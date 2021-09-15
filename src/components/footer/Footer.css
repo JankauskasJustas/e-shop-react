@@ -1,6 +1,6 @@
 .footer {
   padding: 20px;
-  margin: 0 40px 0 40px;
+  margin: var(--xl-spacing) var(--xl-spacing) 0 var(--xl-spacing);
   background: var(--header-footer-bg-color);
   flex-shrink: 0;
   text-align: center;

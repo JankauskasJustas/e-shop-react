@@ -20,7 +20,7 @@
 }
 
 .header--rounded {
-  border-radius: 10px;
+  border-radius: var(--s-spacing);
   border-bottom-right-radius: 45px;
   border-bottom-left-radius: 45px;
 }

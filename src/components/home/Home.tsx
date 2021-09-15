@@ -14,6 +14,7 @@ const Home = () => {
   const getPlayers = async () => {
     const result = await Repository.getPlayers();
     setPlayers(result);
+    setActivePlayer(result[0]);
   };
 
   if (!players.length) getPlayers();

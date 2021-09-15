@@ -12,7 +12,6 @@ interface PlayerListProps {
 }
 
 const PlayerList = (props: PlayerListProps) => {
-  console.log(props.activePlayer);
   return (
     <div className="players-container">
       {props.players.map((player) => (
