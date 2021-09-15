@@ -11,19 +11,20 @@ const Home = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [activePlayer, setActivePlayer] = useState<Player>(players[0]);
 
-  const getPlayers = async () => {
-    const result = await Repository.getPlayers();
+  const getPlayers = async (searchQuery?: string) => {
+    const result = await Repository.getPlayers(searchQuery);
     setPlayers(result);
-    setActivePlayer(result[0]);
+    if (result.length) {
+      setActivePlayer(result[0]);
+    }
   };
-
-  if (!players.length) getPlayers();
 
   return (
     <>
       <Header />
       <Carousel activePlayer={activePlayer} />
       <PlayerList
+        filterPlayers={(searchQuery) => getPlayers(searchQuery)}
         refetchPlayers={() => getPlayers()}
         onActivePlayerChange={(player) => setActivePlayer(player)}
         players={players}

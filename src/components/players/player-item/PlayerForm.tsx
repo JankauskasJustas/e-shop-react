@@ -65,7 +65,7 @@ const PlayerForm = (props: PlayerFormProps) => {
         X
       </button>
       <form className="new-item-form">
-        <label>
+        <label className="input-field">
           <span>
             {formData.img ? "Change main image" : "Upload main image"}
           </span>
@@ -86,7 +86,7 @@ const PlayerForm = (props: PlayerFormProps) => {
             Choose file...
           </button>
         </label>
-        <label>
+        <label className="input-field">
           <span>Name</span>
           <input
             type="text"
@@ -97,7 +97,7 @@ const PlayerForm = (props: PlayerFormProps) => {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
         </label>
-        <label>
+        <label className="input-field">
           <span>Surname</span>
           <input
             type="text"
@@ -110,7 +110,7 @@ const PlayerForm = (props: PlayerFormProps) => {
             }
           />
         </label>
-        <label>
+        <label className="input-field">
           <span>
             {formData.jerseys.length ? "Change jerseys" : "Upload jerseys"}
           </span>

@@ -45,7 +45,7 @@ button:active {
   box-shadow: inset 0 0 3px #000000;
 }
 
-label {
+label.input-field {
   display: inline-flex;
   width: 100%;
   justify-content: space-between;

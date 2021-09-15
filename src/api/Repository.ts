@@ -1,8 +1,8 @@
 import { Player } from "../types/Player";
 
 class Repository {
-    static getPlayers(): Promise<Player[]> {
-        return fetch("http://localhost:4000/players").then((res) => res.json());
+    static getPlayers(searchQuery?: string): Promise<Player[]> {
+        return fetch(`http://localhost:4000/players${searchQuery ? `?name=${searchQuery}` : ''}`).then((res) => res.json());
     }
 
     static insertPlayer(player: Player) {
