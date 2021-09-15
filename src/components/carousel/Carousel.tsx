@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Player } from "../../types/Player";
 import CarouselSlide from "./carousel-slide/CarouselSlide";
 import "./Carousel.css";
@@ -9,6 +9,11 @@ interface CarouselDTO {
 
 const Carousel = (props: CarouselDTO) => {
   const [activeSlidePosition, setActiveSlidePosition] = useState(0);
+
+  useEffect(() => {
+    setActiveSlidePosition(0);
+  }, [props.activePlayer]);
+
   let totalSlides = props.activePlayer?.jerseys.length || 0;
 
   const onPreviousSlideClick = () => {

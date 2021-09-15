@@ -23,5 +23,6 @@
 .carousel__item--visible {
   display: block;
   width: 400px;
+  max-height: 400px;
   animation: fadeVisibility 0.5s;
 }

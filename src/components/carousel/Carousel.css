@@ -1,6 +1,7 @@
 .carousel {
   overflow: hidden;
   max-width: 400px;
+  /* min-height: 400px; */
   width: 100%;
   position: relative;
   justify-self: center;
