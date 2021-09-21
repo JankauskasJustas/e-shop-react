@@ -3,40 +3,32 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Carousel from "../carousel/Carousel";
 import Repository from "../../api/Repository";
-import { Player } from "../../types/Player";
 import PlayerList from "../players/PlayerList";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { setActivePlayerId, setStatePlayers } from "../../state/actions";
 
 const Home = () => {
-  const [players, setPlayers] = useState<Player[]>([]);
-  const [activePlayer, setActivePlayer] = useState<Player>(players[0]);
+  const dispatch = useDispatch();
 
   const getPlayers = useCallback(
     (searchQuery?: string) => {
-      console.log("Query: ", searchQuery);
       Repository.getPlayers(searchQuery).then((res) => {
-        console.log(res);
-        setPlayers(res);
+        dispatch(setStatePlayers(res));
 
         if (res.length) {
-          setActivePlayer(res[0]);
+          dispatch(setActivePlayerId(res[0].id as number));
         }
       });
     },
-    [setActivePlayer, setPlayers]
+    [dispatch]
   );
 
   return (
     <>
       <Header />
-      <Carousel activePlayer={activePlayer} />
-      <PlayerList
-        filterPlayers={getPlayers}
-        refetchPlayers={getPlayers}
-        onActivePlayerChange={(player) => setActivePlayer(player)}
-        players={players}
-        activePlayer={activePlayer}
-      />
+      <Carousel />
+      <PlayerList filterPlayers={getPlayers} refetchPlayers={getPlayers} />
       <Footer />
     </>
   );

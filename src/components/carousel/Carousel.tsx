@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { Player } from "../../types/Player";
+import { useSelector } from "react-redux";
+import getActivePlayerSelector from "../../state/selectors/get-active-player-selector";
 import CarouselSlide from "./carousel-slide/CarouselSlide";
 import "./Carousel.css";
 
-interface CarouselDTO {
-  activePlayer?: Player;
-}
-
-const Carousel = (props: CarouselDTO) => {
+const Carousel = () => {
   const [activeSlidePosition, setActiveSlidePosition] = useState(0);
+  const activePlayer = useSelector(getActivePlayerSelector);
 
   useEffect(() => {
     setActiveSlidePosition(0);
-  }, [props.activePlayer]);
+  }, [activePlayer]);
 
-  let totalSlides = props.activePlayer?.jerseys.length || 0;
+  let totalSlides = activePlayer?.jerseys.length || 0;
 
   const onPreviousSlideClick = () => {
     if (activeSlidePosition === 0) {
@@ -49,7 +47,7 @@ const Carousel = (props: CarouselDTO) => {
             &#10095;
           </button>
         </div>
-        {props.activePlayer?.jerseys.map((jersey, index) => (
+        {activePlayer?.jerseys.map((jersey, index) => (
           <CarouselSlide
             isActive={index === activeSlidePosition}
             key={index}
