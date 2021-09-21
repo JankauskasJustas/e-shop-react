@@ -4,25 +4,21 @@ import Footer from "../footer/Footer";
 import Carousel from "../carousel/Carousel";
 import Repository from "../../api/Repository";
 import PlayerList from "../players/PlayerList";
-import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { setActivePlayerId, setStatePlayers } from "../../state/actions";
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const getPlayers = useCallback(
-    (searchQuery?: string) => {
-      Repository.getPlayers(searchQuery).then((res) => {
-        dispatch(setStatePlayers(res));
+  const getPlayers = (searchQuery?: string) => {
+    Repository.getPlayers(searchQuery).then((res) => {
+      dispatch(setStatePlayers(res));
 
-        if (res.length) {
-          dispatch(setActivePlayerId(res[0].id as number));
-        }
-      });
-    },
-    [dispatch]
-  );
+      if (res.length) {
+        dispatch(setActivePlayerId(res[0].id as number));
+      }
+    });
+  };
 
   return (
     <>

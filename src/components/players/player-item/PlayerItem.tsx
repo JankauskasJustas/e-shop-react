@@ -19,8 +19,7 @@ interface PlayerItemProps {
 const PlayerItem = (props: PlayerItemProps) => {
   const [isFormView, setIsFormView] = useState(false);
   const onEditClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    player: Player
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.stopPropagation();
     setIsFormView(true);
@@ -51,7 +50,7 @@ const PlayerItem = (props: PlayerItemProps) => {
       >
         <div className="item__actions">
           <button
-            onClick={(event) => onEditClick(event, props.player)}
+            onClick={onEditClick}
             type="button"
             className="small-icon-btn small-margin-right"
           >
