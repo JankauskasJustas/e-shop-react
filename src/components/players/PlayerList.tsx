@@ -15,11 +15,12 @@ interface PlayerListProps {
 }
 
 const PlayerList = (props: PlayerListProps) => {
-  const players = useSelector((state: PlayersStore) => {
-    return state.players;
-  });
+  const players = useSelector((state: PlayersStore) => state.players);
   const activePlayer = useSelector(getActivePlayerSelector);
+
   const dispatch = useDispatch();
+
+  const setActivePlayer = (id: number) => dispatch(setActivePlayerId(id));
 
   return (
     <div className="text-centered">
@@ -30,21 +31,19 @@ const PlayerList = (props: PlayerListProps) => {
       <div className="players-container">
         {players.map((player) => (
           <PlayerItem
-            onItemClick={(player) =>
-              dispatch(setActivePlayerId(player.id as number))
-            }
+            onItemClick={setActivePlayer}
             onDeleteClick={async (e, player) => {
               e.stopPropagation();
               await Repository.deletePlayer(player.id as number);
               props.refetchPlayers();
             }}
-            onDataChanged={() => props.refetchPlayers()}
+            onDataChanged={props.refetchPlayers}
             key={player.id}
             player={player}
             isActive={activePlayer === player}
           />
         ))}
-        <NewPlayerItem onDataChanged={() => props.refetchPlayers()} />
+        <NewPlayerItem onDataChanged={props.refetchPlayers} />
       </div>
     </div>
   );

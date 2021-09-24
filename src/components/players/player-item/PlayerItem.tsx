@@ -8,7 +8,7 @@ import PlayerForm from "./PlayerForm";
 interface PlayerItemProps {
   player: Player;
   isActive: boolean;
-  onItemClick: (player: Player) => void;
+  onItemClick: (playerId: number) => void;
   onDeleteClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     player: Player
@@ -42,7 +42,7 @@ const PlayerItem = (props: PlayerItemProps) => {
   } else {
     return (
       <div
-        onClick={() => props.onItemClick(props.player)}
+        onClick={() => props.onItemClick(props.player.id as number)}
         tabIndex={0}
         className={`players-container__item ${
           props.isActive ? "players-container__item--active" : ""
