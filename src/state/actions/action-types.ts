@@ -1,0 +1,2 @@
+export const SET_ACTIVE_PLAYER_ID = "SET_ACTIVE_PLAYER_ID";
+export const SET_PLAYERS = "SET_PLAYERS";

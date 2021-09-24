@@ -8,7 +8,7 @@ import PlayerForm from "./PlayerForm";
 interface PlayerItemProps {
   player: Player;
   isActive: boolean;
-  onItemClick: (player: Player) => void;
+  onItemClick: (playerId: number) => void;
   onDeleteClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     player: Player
@@ -19,8 +19,7 @@ interface PlayerItemProps {
 const PlayerItem = (props: PlayerItemProps) => {
   const [isFormView, setIsFormView] = useState(false);
   const onEditClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    player: Player
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.stopPropagation();
     setIsFormView(true);
@@ -43,7 +42,7 @@ const PlayerItem = (props: PlayerItemProps) => {
   } else {
     return (
       <div
-        onClick={() => props.onItemClick(props.player)}
+        onClick={() => props.onItemClick(props.player.id as number)}
         tabIndex={0}
         className={`players-container__item ${
           props.isActive ? "players-container__item--active" : ""
@@ -51,7 +50,7 @@ const PlayerItem = (props: PlayerItemProps) => {
       >
         <div className="item__actions">
           <button
-            onClick={(event) => onEditClick(event, props.player)}
+            onClick={onEditClick}
             type="button"
             className="small-icon-btn small-margin-right"
           >
